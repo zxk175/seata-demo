@@ -1,0 +1,31 @@
+server:
+  port: 9092
+
+spring:
+  application:
+    name: stock-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: de6a96ee-260e-460f-9b48-a9c5d1e45ec0
+        username: nacos
+        password: nacos
+        refresh-enabled: true
+        enabled: true
+        file-extension: yaml
+        shared-configs:
+          - data-id: stock-service-config.yaml
+            refresh: true
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: de6a96ee-260e-460f-9b48-a9c5d1e45ec0
+        username: nacos
+        password: nacos
+        watch:
+          enabled: true
+    alibaba:
+      seata:
+        tx-service-group: default_tx_group
